@@ -11,3 +11,6 @@ ENV PATH="/workdir/.venv/bin:$PATH"
 
 # Check if PYTHONPATH exists and append /workdir, otherwise set it to /workdir
 RUN if [ -z "$PYTHONPATH" ]; then export PYTHONPATH=/workdir; else export PYTHONPATH=/workdir:$PYTHONPATH; fi
+
+RUN useradd -U -u 1000 appuser && chown -R 1000:1000 /workdir
+USER 1000
